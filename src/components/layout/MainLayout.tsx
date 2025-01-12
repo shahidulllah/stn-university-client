@@ -1,23 +1,9 @@
-import React from "react";
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
+import { adminSidebarItems } from "../../routes/admin.routes";
+import { Outlet } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
-}));
 
 const MainLayout = () => {
   const {
@@ -51,7 +37,7 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={items}
+          items={adminSidebarItems}
         />
       </Sider>
       <Layout>
@@ -65,7 +51,7 @@ const MainLayout = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            <h1>This is STN university content</h1>
+            <Outlet/>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
