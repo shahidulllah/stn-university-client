@@ -1,11 +1,12 @@
 import { Button } from "antd";
 import { useAppDispatch } from "../redux/hooks";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { verifyToken } from "../utils/verifyToken";
 import { setUser } from "../redux/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { TUser } from "../types";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -13,14 +14,13 @@ const SignIn = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       userId: "A-0001",
-      password: "admin1234",
+      password: "1234",
     },
   });
 
-  const [login, { error }] = useLoginMutation();
+  const [login] = useLoginMutation();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("loading in");
     try {
       const userInfo = {
@@ -29,7 +29,7 @@ const SignIn = () => {
       };
 
       const res = await login(userInfo).unwrap();
-      const user = verifyToken(res.data.accessToken);
+      const user = verifyToken(res.data.accessToken) as TUser;
 
       dispatch(
         setUser({
@@ -50,7 +50,6 @@ const SignIn = () => {
       <div>
         <label htmlFor="id">ID: </label>
         <input type="text" id="id" {...register("userId")} />
-        {error && <p>Id is required</p>}
       </div>
       <div>
         <label htmlFor="password">Password: </label>
