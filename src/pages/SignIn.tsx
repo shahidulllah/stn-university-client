@@ -16,7 +16,8 @@ const SignIn = () => {
 
     const [login, {error}] = useLoginMutation()
 
-    const onSubmit = async (data) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const onSubmit = async (data: any) => {
         console.log(data);
         const userInfo = {
             id: data.userId,
@@ -36,6 +37,9 @@ const SignIn = () => {
       <div>
         <label htmlFor="id">ID: </label>
         <input type="text" id="id" {...register("userId")} />
+        {
+          error && <p>Id is required</p>
+        }
       </div>
       <div>
         <label htmlFor="password">Password: </label>
