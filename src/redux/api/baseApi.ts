@@ -33,7 +33,7 @@ const baseQureyWithRefreshToken: BaseQueryFn<
   let result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.status === 404){
-    toast.error("User not found")
+    toast.error("API not found")
   }
 
   if (result?.error?.status === 401) {
