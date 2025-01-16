@@ -20,7 +20,16 @@ const MainLayout = () => {
       <Sidebar />
       <Layout>
         <Header style={{ padding: 0 }}>
-          <Button onClick={handleLogout}>Logout</Button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              padding: "16px",
+            }}
+          >
+            <Button onClick={handleLogout}>Logout</Button>
+          </div>
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
