@@ -10,3 +10,10 @@ export type TUser = {
   updatedAt: string;
   __v: number;
 };
+
+export type TName = {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  _id: string;
+};
