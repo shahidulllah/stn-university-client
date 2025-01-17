@@ -19,7 +19,7 @@ const MainLayout = () => {
     <Layout style={{ height: "100%" }}>
       <Sidebar />
       <Layout>
-        <Header style={{ padding: 0 }}>
+        <Header style={{ padding: '0', position: 'sticky',zIndex: '120', top: '0', left: '0' }}>
           <div
             style={{
               display: "flex",
