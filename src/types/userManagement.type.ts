@@ -27,3 +27,11 @@ export type TGuardian = {
   motherContactNo: string;
   _id: string;
 };
+
+export type TLocalGuardian = {
+  name: string;
+  occupation: string;
+  contactNo: string;
+  address: string;
+  _id: string;
+};
