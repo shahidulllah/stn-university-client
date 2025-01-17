@@ -4,7 +4,6 @@ import { baseApi } from "../../api/baseApi";
 
 const academicManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-
     //Get semester
     getAllSemesters: builder.query({
       query: (args) => {
@@ -54,6 +53,26 @@ const academicManagementApi = baseApi.injectEndpoints({
     }),
 
     //Add faculty
+    addAcademicFaculty: builder.mutation({
+      query: (data) => ({
+        url: "/academic-faculties/create-academic-faculty",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    //Get department
+    getAcademicDepartment: builder.query({
+      query: () => {
+        return { url: "/academic-departments", method: "GET" };
+      },
+      transformResponse: (response: TResponseRedux<TAcademicSemester[]>) => {
+        return {
+          data: response.data,
+          meda: response.meta,
+        };
+      },
+    }),
   }),
 });
 
