@@ -46,6 +46,7 @@ const Sidebar = () => {
       onCollapse={(collapsed, type) => {
         console.log(collapsed, type);
       }}
+      
     >
       <div
         style={{
