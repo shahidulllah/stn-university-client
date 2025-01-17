@@ -17,3 +17,13 @@ export type TName = {
   lastName: string;
   _id: string;
 };
+
+export type TGuardian = {
+  fatherName: string;
+  fatherOccupation: string;
+  fatherContactNo: string;
+  motherName: string;
+  motherOccupation: string;
+  motherContactNo: string;
+  _id: string;
+};
