@@ -110,6 +110,7 @@ const CreateStudent = () => {
   })) || [];
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
     const studentData = {
       password: "student123",
       student: data,
