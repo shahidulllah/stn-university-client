@@ -60,8 +60,7 @@ const studentDefaultValues = {
     lastName: "Number 1",
   },
   gender: "male",
-
-  bloogGroup: "A+",
+  bloodGroup: "A+",
 
   contactNo: "1235678",
   emergencyContactNo: "987-654-3210",
@@ -84,14 +83,13 @@ const studentDefaultValues = {
     address: "789 Pine St, Villageton",
   },
 
-  admissionSemester: "65bb60ebf71fdd1add63b1c0",
-  academicDepartment: "65b4acae3dc8d4f3ad83e416",
+  admissionSemester: "677236598d08521154e648ba",
+  academicDepartment: "677234988d08521154e648ad",
 };
 
 const CreateStudent = () => {
-  const [addStudent, { data, error }] = useAddStudentMutation();
+  const [addStudent] = useAddStudentMutation();
 
-  console.log({ data, error });
 
   const { data: sData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
@@ -123,9 +121,6 @@ const CreateStudent = () => {
 
     addStudent(formData);
 
-    //! This is for development
-    //! Just for checking
-    console.log(Object.fromEntries(formData));
   };
 
   return (
