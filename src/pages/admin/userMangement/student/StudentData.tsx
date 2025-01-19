@@ -119,7 +119,7 @@ const StudentData = () => {
         current={page}
         onChange={(value) => setPage(value)}
         pageSize={metaData?.limit}
-        total={metaData.total}
+        total={metaData?.total}
       />
     </>
   );

@@ -24,7 +24,7 @@ const userManagementApi = baseApi.injectEndpoints({
       transformResponse: (response: TResponseRedux<TStudent[]>) => {
         return {
           data: response.data,
-          meda: response.meta,
+          meta: response.meta,
         };
       },
     }),
@@ -40,4 +40,5 @@ const userManagementApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddStudentMutation, useGetAllStudentsQuery } = userManagementApi;
+export const { useAddStudentMutation, useGetAllStudentsQuery } =
+  userManagementApi;
