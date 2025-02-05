@@ -1,26 +1,28 @@
-import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { Button, Col, Flex } from 'antd';
-import { toast } from 'sonner';
-import { TResponse } from '../../../../types';
-import StnForm from '../../../../components/form/StnForm';
-import StnSelect from '../../../../components/form/StnSelect';
-import StnDatePicker from '../../../../components/form/StnDatePicker';
-import StnInput from '../../../../components/form/StnInput';
-
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Button, Col, Flex } from "antd";
+import { toast } from "sonner";
+import { TResponse } from "../../../../types";
+import StnForm from "../../../../components/form/StnForm";
+import StnSelect from "../../../../components/form/StnSelect";
+import StnDatePicker from "../../../../components/form/StnDatePicker";
+import StnInput from "../../../../components/form/StnInput";
+import { useGetAllSemestersQuery } from "../../../../redux/features/admin/academicManagement.api";
+import { useAddRegisteredSemesterMutation } from "../../../../redux/features/admin/courseManagement.api";
+import { semesterStatusOptions } from "../../../../constants/semester";
 
 const SemesterRegistration = () => {
   const [addSemester] = useAddRegisteredSemesterMutation();
   const { data: academicSemester } = useGetAllSemestersQuery([
-    { name: 'sort', value: 'year' },
+    { name: "sort", value: "year" },
   ]);
-
+  console.log(academicSemester);
   const academicSemesterOptions = academicSemester?.data?.map((item) => ({
     value: item._id,
     label: `${item.name} ${item.year}`,
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const toastId = toast.loading('Creating...');
+    const toastId = toast.loading("Creating...");
 
     const semesterData = {
       ...data,
@@ -31,15 +33,16 @@ const SemesterRegistration = () => {
     console.log(semesterData);
 
     try {
-      const res = (await addSemester(semesterData)) as TResponse<any>;
+      const res = (await addSemester(semesterData)) as TResponse<unknown>;
       console.log(res);
       if (res.error) {
         toast.error(res.error.data.message, { id: toastId });
       } else {
-        toast.success('Semester created', { id: toastId });
+        toast.success("Semester created", { id: toastId });
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
-      toast.error('Something went wrong', { id: toastId });
+      toast.error("Something went wrong", { id: toastId });
     }
   };
 
