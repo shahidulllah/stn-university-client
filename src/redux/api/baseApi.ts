@@ -32,8 +32,8 @@ const baseQureyWithRefreshToken: BaseQueryFn<
 > = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.status === 404){
-    toast.error("API not found")
+  if (result?.error?.status === 404) {
+    toast.error("API not found");
   }
 
   if (result?.error?.status === 401) {
